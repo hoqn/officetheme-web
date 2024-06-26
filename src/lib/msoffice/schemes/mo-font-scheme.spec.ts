@@ -14,7 +14,7 @@ describe("FontScheme을 XML string으로 변환", () => {
 
     element.appendChild(majorFont);
 
-    expect(element.toXmlString("a")).toBe(
+    expect(element.toXmlString()).toBe(
       '<a:fontScheme name="my-font-scheme">' +
         '<a:majorFont >' +
           '<a:latin typeface="Noto Sans"/>' +

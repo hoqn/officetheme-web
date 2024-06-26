@@ -86,7 +86,6 @@ export class MOFontCollectionType extends OpenXmlCompositeElement {
   //   <font script="Jpan" typeface="ＭＳ Ｐゴシック"/>
   //   <font script="Hang" typeface="HY중고딕"/>
   // </majorFont>
-  public appendFont() {}
 }
 
 // https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.drawing.majorfont?view=openxml-3.0.1
@@ -115,5 +114,19 @@ export class MOFontScheme extends OpenXmlCompositeElement {
   constructor(name: string) {
     super("fontScheme");
     this.attributes.name = name;
+  }
+
+  // <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  // <a:fontScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="??">
+  // 로 시작하지 않으면 인식되지 않음
+
+  public toXmlString(): string {
+    let ret = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\r\n';
+
+    // @ts-ignore
+    this.attributes["xmlns:a"] = "http://schemas.openxmlformats.org/drawingml/2006/main";
+    ret += super.toXmlString("a");
+
+    return ret;
   }
 }

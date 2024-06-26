@@ -20,27 +20,27 @@ export class OpenXmlElement {
   }
 
   // XML string 생성
-  public toXmlString(schema?: string): string {
+  public toXmlString(prefix?: string): string {
     let ret = "";
 
     // TODO: 현재는 구현의 편의를 위해 재귀적으로 구현. 추후 외부 라이브러리 또는 다른 방법으로 성능을 높여야 할 듯!
 
-    const tag = schema ? `${schema}:${this.localName}` : `${this.localName}`;
+    const tag = prefix ? `${prefix}:${this.localName}` : `${this.localName}`;
 
     // Attributes 적용
-    ret += "<" + tag + " ";
-    ret += Object.entries(this.attributes).map(([key, value]) => `${key}="${value}"`).join(" ");
+    ret += "<";
+    ret += [tag, ...Object.entries(this.attributes).map(([key, value]) => `${key}="${value}"`)].join(" ");
 
     if (this.childElements && this.childElements.length > 0) {
       // 하위 엘리먼트 존재
-      ret += ">";
+      ret += ">\n";
       for (const child of this.childElements) {
-        ret += child.toXmlString(schema);
+        ret += child.toXmlString(prefix);
       }
-      ret += "</" + tag + ">";
+      ret += "</" + tag + ">\n";
     } else {
       // 단말 엘리먼트
-      ret += "/>";
+      ret += "/>\n";
     }
 
     return ret;
