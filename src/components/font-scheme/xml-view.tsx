@@ -45,8 +45,8 @@ export default function FontSchemeXmlView({ name, xml }: FontSchemeXmlViewProps)
 
   return (
     <div>
-      <pre id="result" className="p-2 bg-muted text-muted-foreground text-sm select-all">
-        {xml}
+      <pre id="result" className="p-2 bg-muted text-muted-foreground text-sm select-all overflow-x-auto">
+        <code>{xml}</code>
       </pre>
       <div className="mt-4 space-x-2 text-right">
         <Button
