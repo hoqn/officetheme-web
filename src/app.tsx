@@ -29,7 +29,7 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <ThemeProvider enableSystem attribute="class">
+    <ThemeProvider enableSystem attribute="data-theme">
       <TooltipProvider>
         <RouterProvider router={router} />
         {/* <FileTest /> */}
