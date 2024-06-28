@@ -1,8 +1,8 @@
-import { Button, Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
-import { PaintBucketIcon, TypeIcon } from "lucide-react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { MainLayout } from "@/components/layout";
+import { Button } from "@/components/ui";
+import { motion } from "framer-motion";
+import { TypeIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -27,7 +27,7 @@ export default function HomePage() {
                   글꼴 테마 꾸리기
                 </Link>
               </Button>
-              <Popover modal>
+              {/* <Popover modal>
                 <PopoverTrigger asChild>
                   <Button variant="outline" className="">
                     <PaintBucketIcon className="size-4 mr-2" />색 테마 꾸리기
@@ -37,7 +37,7 @@ export default function HomePage() {
                   <p>이 기능은 준비 중이에요.</p>
                   <p>열심히 만들고 있으니 곧 만나요!</p>
                 </PopoverContent>
-              </Popover>
+              </Popover> */}
             </motion.div>
           </div>
         </section>
