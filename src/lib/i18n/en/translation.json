@@ -1,0 +1,24 @@
+{
+  "lang": "🇺🇸 English",
+  "main": {
+    "hero_description": "Create and share color themes and font themes on macOS and Windows",
+    "hero_title": "MS Office Theme Tools",
+    "hero_subtitle": "",
+    "link_craft_font_theme": "Create Font Theme",
+    "link_craft_color_theme": "Create Color Theme"
+  },
+  "craft_font": {
+    "title": "Creating New Font Theme",
+    "label_schema_name": "Font Schema Name",
+    "msg_required_schema_name": "You must enter this field",
+    "label_major_font": "Major Font",
+    "label_minor_font": "Minor Font",
+    "add_new_font_rule": "Add a new font rule",
+    "action_craft": "Craft",
+    "request_for_action_craft": "Click the Craft button",
+    "placeholder_script": "Script..."
+  },
+  "common": {
+    "placeholder_font_select": "Font..."
+  }
+}

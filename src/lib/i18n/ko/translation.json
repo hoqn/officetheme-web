@@ -1,0 +1,24 @@
+{
+  "lang": "🇰🇷 한국어",
+  "main": {
+    "hero_description": "macOS에서도, Windows에서도 자유롭게 색 테마와 글꼴 테마를 만들고 공유하세요",
+    "hero_title": "MS Office Theme Tools",
+    "hero_subtitle": "마이크로소프트 오피스 테마 도구",
+    "link_craft_font_theme": "글꼴 테마 꾸리기",
+    "link_craft_color_theme": "색깔 테마 꾸리기"
+  },
+  "craft_font": {
+    "title": "새로운 글꼴 테마 꾸리기",
+    "label_schema_name": "글꼴 스키마 이름",
+    "msg_required_schema_name": "반드시 입력해주셔야 해요",
+    "label_major_font": "제목 글꼴",
+    "label_minor_font": "본문 글꼴",
+    "add_new_font_rule": "새 규칙 넣기",
+    "action_craft": "꾸리기",
+    "request_for_action_craft": "꾸리기 버튼을 눌러주세요",
+    "placeholder_script": "문자..."
+  },
+  "common": {
+    "placeholder_font_select": "글꼴..."
+  }
+}

@@ -5,7 +5,25 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Select, SelectContent, SelectItem } from "../ui";
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui";
+import { useTranslation } from "react-i18next";
+
+function LangSelect({ className }: { className?: string }) {
+  const { t, i18n } = useTranslation();
+
+  return (
+    <Select value={i18n.language} onValueChange={i18n.changeLanguage}>
+      <SelectTrigger className={className}>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {i18n.languages.map((lng) => (
+          <SelectItem key={lng} value={lng}>{t("lang", { lng })}</SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
 
 function ThemeSelect({ className }: { className?: string }) {
   const { setTheme, themes, theme } = useTheme();
@@ -56,8 +74,9 @@ export function MainNav({ className, ...restProps }: MainNavProps) {
             <h2 className="text-base font-bold">MS Office Theme Tools</h2>
           </Link>
         </div>
-        <nav className="flex flex-row h-full items-center">
-          <ThemeSelect />
+        <nav className="flex flex-row h-full items-center gap-4">
+          <LangSelect className="" />
+          <ThemeSelect className="" />
         </nav>
       </div>
     </header>

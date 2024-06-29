@@ -5,6 +5,8 @@ import CraftColorSchemePage from "./pages/craft-color";
 import HomePage from "./pages/home";
 import { ThemeProvider } from "next-themes";
 
+import "@/lib/i18n";
+
 const router = createBrowserRouter([
   {
     path: "/",

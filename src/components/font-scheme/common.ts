@@ -10,7 +10,7 @@ export const $FormFontCollection = z.array($FormFont).default([
   { key: "cs", typeface: "" },
 ]);
 export const $FormFontScheme = z.object({
-  fontSchemeName: z.string().min(1, "반드시 입력해주셔야 해요!").default(""),
+  fontSchemeName: z.string().min(1, "craft_font.msg_required_schema_name").default(""),
 
   // latin, ea, cs는 필수
   // font script= 는 선택

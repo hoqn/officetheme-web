@@ -31,8 +31,11 @@ import { $FormFontCollection, $FormFontScheme } from "./common";
 import FontCollectionFields from "./font-collection-fields";
 import { LocalFontsProvider } from "./local-fonts-provider";
 import FontSchemeXmlView from "./xml-view";
+import { useTranslation } from "react-i18next";
 
 export function FontSchemeGenSection({ className }: { className?: string }) {
+  const {t} = useTranslation();
+
   const [result, setResult] = useState<{ name: string; xml: string } | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -122,7 +125,7 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
           {/* <form onSubmit={handleOnSubmit}> */}
           <form onSubmit={handleOnSubmit}>
             <CardHeader>
-              <CardTitle>새로운 글꼴 테마 꾸리기</CardTitle>
+              <CardTitle>{t("craft_font.title")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
@@ -131,24 +134,24 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
                   name="fontSchemeName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>글꼴 스키마 이름</FormLabel>
+                      <FormLabel>{t("craft_font.label_schema_name")}</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage  />
                     </FormItem>
                   )}
                 />
                 <LocalFontsProvider>
                   <FontCollectionFields
-                    title="제목 글꼴"
+                    title={t("craft_font.label_major_font")}
                     control={form.control}
                     fieldName="majorFont"
                     onDeleteField={handleOnDeleteMajorFontField}
                     {...formMajorFont}
-                  />
+                    />
                   <FontCollectionFields
-                    title="본문 글꼴"
+                    title={t("craft_font.label_minor_font")}
                     control={form.control}
                     fieldName="minorFont"
                     onDeleteField={handleOnDeleteMinorFontField}
@@ -165,7 +168,7 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
                     꾸리는 중...
                   </>
                 ) : (
-                  "꾸리기"
+                  t("craft_font.action_craft")
                 )}
               </Button>
             </CardFooter>
@@ -177,7 +180,7 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
         {result ? (
           <FontSchemeXmlView name={result.name} xml={result.xml} />
         ) : (
-          <span className="text-sm opacity-50">꾸리기 버튼을 눌러주세요</span>
+          <span className="text-sm opacity-50">{t("craft_font.request_for_action_craft")}</span>
         )}
       </div>
     </section>

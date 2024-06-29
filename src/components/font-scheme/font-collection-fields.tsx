@@ -15,12 +15,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui";
-import { tMandatoryFontTypes, tSupplementalFontScripts } from "@/lib/i18n/ko/lang-scripts.i18n";
 import { AnimatePresence } from "framer-motion";
 import { PlusIcon, Trash2Icon } from "lucide-react";
 import { Control, FieldArrayPath, UseFieldArrayReturn } from "react-hook-form";
 import { $FormFontScheme } from "./common";
 import FontSelect from "./font-select";
+import { useTranslation } from "react-i18next";
+import { supplementalFontScripts } from "@/lib/msoffice/schemes/lang-scripts";
 
 interface FontCollectionFieldsProps<
   TFieldValues extends $FormFontScheme,
@@ -41,6 +42,9 @@ export default function FontCollectionFields({
   fields,
   append,
 }: FontCollectionFieldsProps<$FormFontScheme, "majorFont"> | FontCollectionFieldsProps<$FormFontScheme, "minorFont">) {
+  const { t } = useTranslation();
+  const iso15924 = useTranslation("iso15924");
+
   return (
     <div className="space-y-2">
       <FormLabel>{title}</FormLabel>
@@ -54,7 +58,7 @@ export default function FontCollectionFields({
                 {/* Mandatory */}
                 {isMandatory && (
                   <div className="w-[192px] h-10 px-3 py-2 flex flex-row justify-start items-center text-sm">
-                    {tMandatoryFontTypes[collectionField.key as "latin"]}
+                    {iso15924.t(collectionField.key)}
                     <code className="ml-2 text-xs bg-muted text-muted-foreground">{collectionField.key}</code>
                   </div>
                 )}
@@ -69,7 +73,7 @@ export default function FontCollectionFields({
                         <FormControl>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <SelectTrigger className="border-none">
-                              <SelectValue placeholder="문자 집합..." />
+                              <SelectValue placeholder={t("craft_font.placeholder_script")} />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectGroup className="border-t">
@@ -77,9 +81,9 @@ export default function FontCollectionFields({
                                   <div>보충</div>
                                   <p className="text-xs font-normal">더 좁은 범위, 특정 문자 체계별로 지정해요.</p>
                                 </SelectLabel>
-                                {Object.entries(tSupplementalFontScripts).map(([value, label]) => (
+                                {supplementalFontScripts.map((value) => (
                                   <SelectItem key={value} value={value}>
-                                    {label} <code className="text-xs bg-muted text-muted-foreground">{value}</code>
+                                    {iso15924.t(value)} <code className="text-xs bg-muted text-muted-foreground">{value}</code>
                                   </SelectItem>
                                 ))}
                               </SelectGroup>
@@ -126,7 +130,7 @@ export default function FontCollectionFields({
       <div className="flex justify-center items-center">
         <Button type="button" variant="ghost" onClick={() => void append({ key: "", typeface: "" })}>
           <PlusIcon className="size-4 mr-2" />
-          새로운 규칙 넣기
+          {t("craft_font.add_new_font_rule")}
         </Button>
       </div>
     </div>

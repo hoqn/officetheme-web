@@ -2,8 +2,11 @@ import { Input, Tooltip } from "@/components/ui";
 import AutoComplete, { AutoCompleteOption } from "@/components/ui-hoqn/autocomplete";
 import { useEffect, useState } from "react";
 import { useLocalFonts } from "./local-fonts-provider";
+import { useTranslation } from "react-i18next";
 
 export default function FontSelect({ onChange, value }: { onChange(value: string): void; value: string }) {
+  const { t } = useTranslation();
+
   const { fontsByFamily, fontsRequestNotSupported } = useLocalFonts();
 
   const [options, setOptions] = useState<AutoCompleteOption[] | null>(null);
@@ -36,7 +39,7 @@ export default function FontSelect({ onChange, value }: { onChange(value: string
       value={value}
       onValueChange={onChange}
       onValueSelect={() => {}}
-      placeholder="글꼴..."
+      placeholder={t("common.placeholder_font_select")}
     />
   );
 }

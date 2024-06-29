@@ -2,18 +2,21 @@ import { MainLayout } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { motion } from "framer-motion";
 import { TypeIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  const { t } = useTranslation();
+
   return (
     <MainLayout>
       <main className="">
         <section className="bg-background text-foreground">
           <div className="container flex flex-col h-96 items-center justify-center">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary">MS Office Theme Tools</h2>
-            <h4 className="mt-2 text-sm font-normal text-muted-foreground">마이크로소프트 오피스 테마 도구</h4>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary">{t("main.hero_title")}</h2>
+            <h4 className="mt-2 text-sm font-normal text-muted-foreground">{t("main.hero_subtitle")}</h4>
             <div className="mt-8 animate-in duration-500 fade-in-0 slide-in-from-bottom-4">
-              macOS에서도, Windows에서도 자유롭게 색 테마와 글꼴 테마를 만들고 공유하세요!
+              {t("main.hero_description")}
             </div>
             <motion.div
               className="mt-8 flex flex-row gap-4"
@@ -24,7 +27,7 @@ export default function HomePage() {
               <Button variant="outline" className="" asChild>
                 <Link to="/craft/font">
                   <TypeIcon className="size-4 mr-2" />
-                  글꼴 테마 꾸리기
+                  {t("main.link_craft_font_theme")}
                 </Link>
               </Button>
               {/* <Popover modal>
