@@ -1,3 +1,4 @@
+import MainFooter from "./main-footer";
 import { MainNav } from "./main-nav";
 
 export interface MainLayoutProps {
@@ -11,6 +12,7 @@ export function MainLayout({ hasMainNav = true, children }: MainLayoutProps) {
       {hasMainNav && <MainNav />}
       <div className="h-16" /> {/* Skip MainNav height */}
       {children}
+      <MainFooter />
     </div>
   );
 }
