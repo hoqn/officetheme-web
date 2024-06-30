@@ -15,9 +15,24 @@
     "add_new_font_rule": "새 규칙 넣기",
     "action_craft": "꾸리기",
     "request_for_action_craft": "꾸리기 버튼을 눌러주세요",
-    "placeholder_script": "문자..."
+    "placeholder_script": "문자...",
+    "msg_successfully_created": "성공적으로 생성되었어요!",
+    "msg_following_rule_removed": "다음 규칙이 지워졌어요.",
+    "msg_following_rule_description": "{{script}}일 때 {{font}} 쓰임",
+    "msg_following_rule_empty_script": "(정해지지 않은 문자)",
+    "msg_following_rule_empty_font": "(정해지지 않은 글꼴)",
+    "action_download_file": "파일 다운로드",
+    "msg_successfully_downloaded": "다운로드되었어요",
+    "msg_post_download_description": "이제 아래 절차를 따라해주시면 돼요.",
+    "label_1_post_download": "1. 사용하시는 운영체제가 무엇인가요?",
+    "placeholder_os": "운영체제",
+    "label_2_post_download": "2. 이제, 해당 파일을 다음 경로로 옮겨주세요",
+    "label_2_post_download_tip_mac": "macOS의 경우 파인더에서 ⌘⇧G를 누르면 경로로 바로 입력할 수 있어요",
+    "msg_post_download_path_copied": "경로가 복사되었어요.\n다운로드된 xml 파일을 해당 경로로 옮겨주세요."
   },
   "common": {
-    "placeholder_font_select": "글꼴..."
+    "placeholder_font_select": "글꼴...",
+    "action_undo": "되돌리기",
+    "action_copy": "복사하기"
   }
 }

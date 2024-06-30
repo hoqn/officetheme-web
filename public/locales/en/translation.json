@@ -15,9 +15,24 @@
     "add_new_font_rule": "Add a new font rule",
     "action_craft": "Craft",
     "request_for_action_craft": "Click the Craft button",
-    "placeholder_script": "Script..."
+    "placeholder_script": "Script...",
+    "msg_successfully_created": "Successfully created!",
+    "msg_following_rule_removed": "The following rule is removed:",
+    "msg_following_rule_description": "Use {{font}} on {{script}} script",
+    "msg_following_rule_empty_script": "(Undefined Script)",
+    "msg_following_rule_empty_font": "(Undefined Font)",
+    "action_download_file": "Download as File",
+    "msg_successfully_downloaded": "File Downloaded",
+    "msg_post_download_description": "Now all you need to do is follow the steps below.",
+    "label_1_post_download": "1. What is your operating system?",
+    "placeholder_os": "OS",
+    "label_2_post_download": "2. Now, move the file to the following path",
+    "label_2_post_download_tip_mac": "On macOS, you can press ⌘⇧G in the Finder to enter the path directly",
+    "msg_post_download_path_copied": "The path has been copied.\nPlease move the downloaded XML file to that path."
   },
   "common": {
-    "placeholder_font_select": "Font..."
+    "placeholder_font_select": "Font...",
+    "action_undo": "Undo",
+    "action_copy": "Copy"
   }
 }

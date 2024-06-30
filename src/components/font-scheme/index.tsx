@@ -34,7 +34,7 @@ import FontSchemeXmlView from "./xml-view";
 import { useTranslation } from "react-i18next";
 
 export function FontSchemeGenSection({ className }: { className?: string }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [result, setResult] = useState<{ name: string; xml: string } | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -87,7 +87,7 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
         resolve();
       })
         .then(() => {
-          toast.success("생성되었어요!");
+          toast.success(t("craft_font.msg_successfully_created"));
         })
         .finally(() => {
           setLoading(false);
@@ -104,12 +104,13 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
 
     target.remove(removedIndex);
 
-    toast.warning("다음 규칙이 지워졌어요.", {
-      description: `${removedField.key || "(정해 지지 않은 문자)"}일 때 ${
-        removedField.typeface || "(아직 정해지지 않은 글꼴)"
-      } 쓰임`,
+    toast.warning(t("craft_font.msg_following_rule_removed"), {
+      description: t("craft_font.msg_following_rule_description", {
+        script: removedField.key || t("craft_font.msg_following_rule_empty_script"),
+        font: removedField.typeface || t("craft_font.msg_following_rule_empty_font"),
+      }),
       action: {
-        label: "되돌리기",
+        label: t("common.action_undo"),
         onClick: () => void target.insert(removedIndex, removedField),
       },
     });
@@ -138,7 +139,7 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormMessage  />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -149,7 +150,7 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
                     fieldName="majorFont"
                     onDeleteField={handleOnDeleteMajorFontField}
                     {...formMajorFont}
-                    />
+                  />
                   <FontCollectionFields
                     title={t("craft_font.label_minor_font")}
                     control={form.control}
