@@ -1,12 +1,23 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import HttpApi from "i18next-http-backend";
 
-import en from "./en";
-import ko from "./ko";
+export const supportedLngs = ["ko", "en", "de"] as const;
+export const supportedLngNames: Record<typeof supportedLngs[number], string> = {
+  en: "🇬🇧 English",
+  ko: "🇰🇷 한국어",
+  de: "🇩🇪 Deutsch"
+};
 
-i18n.use(initReactI18next).init({
-  resources: { en, ko },
-  fallbackLng: ["en", "ko"],
-});
+i18n
+  .use(HttpApi)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en",
+    supportedLngs,
+    backend: {
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
+    },
+  });
 
 export default i18n;

@@ -1,0 +1,23 @@
+{
+  "main": {
+    "hero_description": "Erstellen und teilen Sie Farb- und Schriftdesigns unter macOS und Windows",
+    "hero_title": "MS Office Theme Tools",
+    "hero_subtitle": "MS Office Thema-Tools",
+    "link_craft_font_theme": "Schriftthema erstellen",
+    "link_craft_color_theme": "Farbthema erstellen"
+  },
+  "craft_font": {
+    "title": "Neues Schriftthema erstellen",
+    "label_schema_name": "Font Schema Name",
+    "msg_required_schema_name": "Sie müssen dieses Feld ausfüllen",
+    "label_major_font": "Große Schrift",
+    "label_minor_font": "Kleine Schrift",
+    "add_new_font_rule": "Eine neue Schriftartregel hinzufügen",
+    "action_craft": "Erstellen",
+    "request_for_action_craft": "Klicken Sie auf die Schaltfläche Erstellen",
+    "placeholder_script": "Zeichen..."
+  },
+  "common": {
+    "placeholder_font_select": "Schriftart..."
+  }
+}

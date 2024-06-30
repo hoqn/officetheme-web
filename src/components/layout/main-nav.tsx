@@ -7,9 +7,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui";
 import { useTranslation } from "react-i18next";
+import { supportedLngs, supportedLngNames } from "@/lib/i18n";
 
 function LangSelect({ className }: { className?: string }) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Select value={i18n.language} onValueChange={i18n.changeLanguage}>
@@ -17,8 +18,8 @@ function LangSelect({ className }: { className?: string }) {
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        {i18n.languages.map((lng) => (
-          <SelectItem key={lng} value={lng}>{t("lang", { lng })}</SelectItem>
+        {supportedLngs.map((lng) => (
+          <SelectItem key={lng} value={lng}>{supportedLngNames[lng]}</SelectItem>
         ))}
       </SelectContent>
     </Select>

@@ -1,33 +1,34 @@
 import { Toaster, TooltipProvider } from "@/components/ui";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import CraftFontSchemePage from "./pages/craft-font";
-import CraftColorSchemePage from "./pages/craft-color";
-import HomePage from "./pages/home";
 import { ThemeProvider } from "next-themes";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/home";
 
 import "@/lib/i18n";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      index: true,
+      Component: HomePage,
+    },
+    {
+      path: "craft",
+      children: [
+        {
+          path: "font",
+          lazy: () => import("@/pages/craft-font").then((it) => ({ Component: it.default })),
+        },
+        {
+          path: "color",
+          lazy: () => import("@/pages/craft-color").then((it) => ({ Component: it.default })),
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    Component: HomePage,
-  },
-  {
-    path: "craft",
-    children: [
-      {
-        path: "font",
-        Component: CraftFontSchemePage,
-      },
-      {
-        path: "color",
-        Component: CraftColorSchemePage,
-      },
-    ],
-  },
-], {
-  basename: import.meta.env.BASE_URL,
-});
+    basename: import.meta.env.BASE_URL,
+  }
+);
 
 export default function App() {
   return (
