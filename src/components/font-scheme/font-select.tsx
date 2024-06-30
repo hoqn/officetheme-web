@@ -1,8 +1,9 @@
-import { Input, Tooltip } from "@/components/ui";
+import { Input, Popover, PopoverContent } from "@/components/ui";
 import AutoComplete, { AutoCompleteOption } from "@/components/ui-hoqn/autocomplete";
+import { PopoverAnchor } from "@radix-ui/react-popover";
 import { useEffect, useState } from "react";
-import { useLocalFonts } from "./local-fonts-provider";
 import { useTranslation } from "react-i18next";
+import { useLocalFonts } from "./local-fonts-provider";
 
 export default function FontSelect({ onChange, value }: { onChange(value: string): void; value: string }) {
   const { t } = useTranslation();
@@ -24,11 +25,28 @@ export default function FontSelect({ onChange, value }: { onChange(value: string
     onChange(ev.target.value);
   };
 
+  const [altOpen, setAltOpen] = useState(false);
+
   if (fontsRequestNotSupported) {
     return (
-      <Tooltip>
-        <Input value={value} onChange={handleOnChange} />
-      </Tooltip>
+      <Popover open={altOpen} onOpenChange={setAltOpen}>
+        <PopoverAnchor>
+          <Input
+            onFocus={() => void setAltOpen(true)}
+            onBlur={() => void setAltOpen(false)}
+            style={{ fontFamily: value }}
+            value={value}
+            onChange={handleOnChange}
+          />
+        </PopoverAnchor>
+        <PopoverContent
+          className="text-xs text-muted-foreground my-2 whitespace-pre-line"
+          onOpenAutoFocus={(ev) => void ev.preventDefault()}
+          onFocusOutside={(ev) => void ev.preventDefault()}
+        >
+          {t("common.msg_unsupported_local_font_access_api")}
+        </PopoverContent>
+      </Popover>
     );
   }
 

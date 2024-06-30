@@ -32,6 +32,7 @@
   },
   "common": {
     "placeholder_font_select": "Font...",
+    "msg_unsupported_local_font_access_api": "This browser can't load local fonts.\nTry a browser like Chrome or Edge.",
     "action_undo": "Undo",
     "action_copy": "Copy"
   },

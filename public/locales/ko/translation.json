@@ -32,6 +32,7 @@
   },
   "common": {
     "placeholder_font_select": "글꼴...",
+    "msg_unsupported_local_font_access_api": "이 브라우저는 사용자 글꼴을 불러올 수 없어요.\nChrome, Edge 등의 브라우저를 사용해보세요!",
     "action_undo": "되돌리기",
     "action_copy": "복사하기"
   },
