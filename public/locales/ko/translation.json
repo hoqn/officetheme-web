@@ -34,5 +34,10 @@
     "placeholder_font_select": "글꼴...",
     "action_undo": "되돌리기",
     "action_copy": "복사하기"
+  },
+  "color_scheme": {
+    "light": "밝음",
+    "dark": "어두움",
+    "system": "시스템대로"
   }
 }

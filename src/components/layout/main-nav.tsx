@@ -28,6 +28,7 @@ function LangSelect({ className }: { className?: string }) {
 
 function ThemeSelect({ className }: { className?: string }) {
   const { setTheme, themes, theme } = useTheme();
+  const {t} = useTranslation();
 
   return (
     <Select value={theme} onValueChange={setTheme}>
@@ -38,9 +39,9 @@ function ThemeSelect({ className }: { className?: string }) {
         </Button>
       </SelectTriggerPrim>
       <SelectContent>
-        {themes.map((t) => (
-          <SelectItem key={t} value={t}>
-            {t}
+        {themes.map((it) => (
+          <SelectItem key={it} value={it}>
+            {t(`color_scheme.${it}`)}
           </SelectItem>
         ))}
       </SelectContent>
