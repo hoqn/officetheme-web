@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -17,4 +18,19 @@ export function concatJosa(word: string, i: string, ga: "가" | string) {
     // 끝소리 없음
     return `${word}${ga}`;
   }
+}
+
+// LocalStorage state
+export function usePersistentState<S>(defaultValue: S, key: string): [S, Dispatch<SetStateAction<S>>] {
+  const [state, setState] = useState(() => {
+    const value = window.localStorage.getItem(key);
+
+    return value ? JSON.parse(value) as S : defaultValue;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
 }

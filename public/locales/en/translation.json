@@ -28,7 +28,10 @@
     "placeholder_os": "OS",
     "label_2_post_download": "2. Now, move the file to the following path",
     "label_2_post_download_tip_mac": "On macOS, you can press ⌘⇧G in the Finder to enter the path directly",
-    "msg_post_download_path_copied": "The path has been copied.\nPlease move the downloaded XML file to that path."
+    "msg_post_download_path_copied": "The path has been copied.\nPlease move the downloaded XML file to that path.",
+    "title_preview": "Preview",
+    "label_preview_on": "show Preview",
+    "label_preview_off": "hide Preview"
   },
   "common": {
     "placeholder_font_select": "Font...",
