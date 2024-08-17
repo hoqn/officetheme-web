@@ -1,7 +1,7 @@
 import { MainLayout } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { motion } from "framer-motion";
-import { TypeIcon } from "lucide-react";
+import { InfoIcon, TypeIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -42,6 +42,28 @@ export default function HomePage() {
                 </PopoverContent>
               </Popover> */}
             </motion.div>
+          </div>
+        </section>
+
+        <section className="bg-background text-foreground">
+          <div className="container pt-6 pb-12 text-center">
+            <div className="text-lg font-bold mb-4">
+              <InfoIcon className="inline mr-2" />
+              <span>
+                {t("main.info_title")}
+              </span>
+            </div>
+            <div className="text-sm">
+              <p>
+                {t("main.info_p1")}
+              </p>
+              <p>
+                {t("main.info_p2")}
+              </p>
+              <p className="mt-2 text-muted-foreground">
+                {t("main.info_p3")}
+              </p>
+            </div>
           </div>
         </section>
       </main>

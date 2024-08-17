@@ -4,7 +4,11 @@
     "hero_title": "MS Office Theme Tools",
     "hero_subtitle": "",
     "link_craft_font_theme": "Create Font Theme",
-    "link_craft_color_theme": "Create Color Theme"
+    "link_craft_color_theme": "Create Color Theme",
+    "info_title": "I'm trying to fix this!",
+    "info_p1": "You can't edit or add custom color themes and font themes in the macOS version of MS Office.",
+    "info_p2": "This app provides the ability to edit or create custom color/font theme files(XML).",
+    "info_p3": "The formats are all publicly available from Microsoft as 'OpenXML'."
   },
   "craft_font": {
     "title": "Creating New Font Theme",

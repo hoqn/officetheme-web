@@ -4,7 +4,11 @@
     "hero_title": "MS Office Theme Tools",
     "hero_subtitle": "마이크로소프트 오피스 테마 도구",
     "link_craft_font_theme": "글꼴 테마 꾸리기",
-    "link_craft_color_theme": "색깔 테마 꾸리기"
+    "link_craft_color_theme": "색깔 테마 꾸리기",
+    "info_title": "이런 문제를 해결하려고 해요!",
+    "info_p1": "macOS 버전의 MS Office에서는 사용자 지정 색 테마와 글꼴 테마를 수정하거나 추가할 수 없어요.",
+    "info_p2": "이 애플리케이션은 사용자 지정 색 테마와 글꼴 테마 파일(XML)을 수정하고 생성하는 기능을 제공해요.",
+    "info_p3": "여기서 사용되는 포맷은 모두 Microsoft에서 OpenXML이란 형태로 공개해놓았어요. 이를 참고해 만들었어요."
   },
   "craft_font": {
     "title": "새로운 글꼴 테마 꾸리기",
