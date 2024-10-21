@@ -1,5 +1,4 @@
 import { CommandGroup, CommandItem, CommandList, Input, InputProps } from "@/components/ui";
-import { cn } from "@/lib/utils";
 import { CommandInput as CommandInputPrim, Command as CommandPrim } from "cmdk";
 import { ChangeEventHandler, forwardRef, useState } from "react";
 
@@ -35,22 +34,24 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
         <CommandInputPrim ref={ref} value={value} onValueChange={onValueChange} {...restProps} asChild>
           <Input onFocus={() => void setOpen(true)} onChange={handleOnChange} />
         </CommandInputPrim>
-        <div className={cn("relative", open ? "block" : "hidden")}>
-          <CommandList className="absolute top-1 w-full rounded-lg bg-popover text-popover-foreground shadow z-10 fade-in-0 zoom-in-95 animate-in origin-top">
-            <CommandGroup>
-              {options.map((option) => (
-                <CommandItem
-                  key={option.value}
-                  value={option.value}
-                  onSelect={handleOnSelect}
-                  className="felx flex-row justify-between items-center"
-                >
-                  <span>{option.label}</span>
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </div>
+        {open && (
+          <div className="relative">
+            <CommandList className="absolute top-1 w-full rounded-lg bg-popover text-popover-foreground shadow z-10 fade-in-0 zoom-in-95 animate-in origin-top">
+              <CommandGroup>
+                {options.map((option) => (
+                  <CommandItem
+                    key={option.value}
+                    value={option.value}
+                    onSelect={handleOnSelect}
+                    className="felx flex-row justify-between items-center"
+                  >
+                    <span>{option.label}</span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </div>
+        )}
       </CommandPrim>
     );
   }
