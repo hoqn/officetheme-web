@@ -1,22 +1,7 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-} from "@/components/ui";
 import { MOFontScheme } from "@/lib/msoffice/schemes/mo-font-scheme";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import { t } from "i18next";
-import { Loader2Icon } from "lucide-react";
-import { ControllerRenderProps } from "react-hook-form";
+import { toast } from "sonner";
 import { $FormFontScheme } from "../common";
 import { parseFontSchemeForm, useFontSchemeForm } from "../hooks/use-font-scheme-form";
 import { FontSchemeForm } from "./font-scheme-form";
@@ -44,12 +29,12 @@ const animatePreview = {
 } satisfies Variants;
 
 interface FontSchemeFormSectionProps {
+  showPreview?: boolean;
   onSchemeGenerated(name: string, scheme: MOFontScheme): void;
 }
 
-export function FontSchemeFormSection({ onSchemeGenerated }: FontSchemeFormSectionProps) {
+export function FontSchemeFormSection({ showPreview = false, onSchemeGenerated }: FontSchemeFormSectionProps) {
   const form = useFontSchemeForm();
-  const isSubmitting = form.formState.isSubmitting;
 
   const handleSubmit = (data: $FormFontScheme) => {
     // async
@@ -59,27 +44,31 @@ export function FontSchemeFormSection({ onSchemeGenerated }: FontSchemeFormSecti
   };
 
   return (
-    <Card className="flex-1 max-w-screen-sm mx-auto">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
-          <CardHeader>
-            <CardTitle>{t("craft_font.title")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-4">
-              <FormField control={form.control} name="fontSchemeName" render={FontSchemeNameInput} />
-              <FontCollectionFields title={t("craft_font.label_major_font")} fieldName="majorFont" />
-              <FontCollectionFields title={t("craft_font.label_minor_font")} fieldName="minorFont" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button type="submit" className="w-full" disabled={isSubmitting} aria-disabled={isSubmitting}>
-              {isSubmitting && <Loader2Icon className="animate-spin mr-2" />}
-              {t("craft_font.action_craft")}
-            </Button>
-          </CardFooter>
-        </form>
-      </Form>
-    </Card>
+    <div className="flex flex-col lg:flex-row flex-wrap">
+      <motion.div
+        className={cn("flex-1 w-full max-w-screen-sm mx-auto z-10", !showPreview && "flex-grow-[2]")}
+        layout="position"
+      >
+        <motion.div>
+          <FontSchemeForm form={form} onSubmit={handleSubmit} />
+        </motion.div>
+      </motion.div>
+
+      <AnimatePresence initial={false}>
+        {showPreview ? (
+          <motion.div
+            className="flex-1 pt-4 pl-0 md:pt-0 md:pl-4"
+            variants={animatePreview}
+            initial="hidden"
+            animate="shown"
+            exit="hidden"
+          >
+            <FontSchemePreview form={form} />
+          </motion.div>
+        ) : (
+          <div />
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
