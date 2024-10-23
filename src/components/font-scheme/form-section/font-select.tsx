@@ -3,7 +3,7 @@ import AutoComplete, { AutoCompleteOption } from "@/components/ui-hoqn/autocompl
 import { PopoverAnchor } from "@radix-ui/react-popover";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocalFonts } from "./local-fonts-provider";
+import { useLocalFonts } from "../local-fonts-provider";
 
 export default function FontSelect({ onChange, value }: { onChange(value: string): void; value: string }) {
   const { t } = useTranslation();
