@@ -1,8 +1,8 @@
+import { Card, CardTitle } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import { useMemo } from "react";
+import { UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Card, CardTitle } from "../ui";
-import { $FormFontCollection } from "./common";
+import { $FormFontScheme } from "../common";
 
 const dummyMajor = {
   DEFAULT: "Dies ist die Überschrift",
@@ -26,30 +26,27 @@ const dummyMinor = {
 
 interface FontSchemePreviewProps {
   className?: string;
-  majorFont: $FormFontCollection;
-  minorFont: $FormFontCollection;
+  form: UseFormReturn<$FormFontScheme>;
 }
 
-export default function FontSchemePreview({ className, majorFont, minorFont }: FontSchemePreviewProps) {
+export default function FontSchemePreview({ className, form }: FontSchemePreviewProps) {
   const { t } = useTranslation();
   const { t: iso15924t } = useTranslation("iso15924");
 
-  const fonts = useMemo(() => {
-    // { [key]: { majorFont, minorFont } }
-    const ret: Record<string, { majorFont?: string; minorFont?: string }> = {};
+  const majorFont = form.watch("majorFont");
+  const minorFont = form.watch("minorFont");
 
-    majorFont.forEach(({ key, typeface }) => {
-      if (!(key in ret)) ret[key] = {};
-      ret[key].majorFont = typeface;
-    });
+  const fonts: Record<string, { majorFont?: string; minorFont?: string }> = {};
 
-    minorFont.forEach(({ key, typeface }) => {
-      if (!(key in ret)) ret[key] = {};
-      ret[key].minorFont = typeface;
-    });
+  majorFont.forEach(({ key, typeface }) => {
+    if (!(key in fonts)) fonts[key] = {};
+    fonts[key].majorFont = typeface;
+  });
 
-    return ret;
-  }, [JSON.stringify(majorFont), JSON.stringify(minorFont)]);
+  minorFont.forEach(({ key, typeface }) => {
+    if (!(key in fonts)) fonts[key] = {};
+    fonts[key].minorFont = typeface;
+  });
 
   return (
     <Card className={cn("p-4", className)}>

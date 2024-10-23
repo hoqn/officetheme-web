@@ -1,37 +1,11 @@
 import { Card, Label, Separator, Switch } from "@/components/ui";
 import { MOFontScheme } from "@/lib/msoffice/schemes/mo-font-scheme";
 import { cn, usePersistentState } from "@/lib/utils";
-import { Variants, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FontSchemeFormSection } from "./form-section";
-import FontSchemeXmlView from "./xml-view";
 import { LocalFontsProvider } from "./local-fonts-provider";
-import FontSchemePreview from "./font-scheme-preview";
-
-// Preview show/hidden anim
-const animatePreview: Variants = {
-  shown: {
-    display: "",
-    opacity: [0, 0, 1],
-    flexGrow: [0, 1, 1],
-    scale: [0.96, 0.96, 1],
-    transition: {
-      duration: 0.4,
-    },
-  },
-  hidden: {
-    opacity: [1, 0, 0],
-    flexGrow: [1, 1, 0],
-    scale: [1, 0.96, 0.96],
-    transitionEnd: {
-      display: "none",
-    },
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
+import FontSchemeXmlView from "./xml-view";
 
 export function FontSchemeGenSection({ className }: { className?: string }) {
   const { t } = useTranslation();
@@ -51,18 +25,14 @@ export function FontSchemeGenSection({ className }: { className?: string }) {
           </Label>
         </span>
       </div>
-      <div className="flex flex-col md:flex-row flex-wrap bg-muted/40 -my-4 p-4 rounded-lg">
+      {/* Form */}
+      <div className="bg-muted/40 -my-4 p-4 rounded-lg">
         <LocalFontsProvider>
-          <FontSchemeFormSection onSchemeGenerated={(name, scheme) => void setFontScheme({ name, scheme })} />
+          <FontSchemeFormSection
+            showPreview={showPreview}
+            onSchemeGenerated={(name, scheme) => void setFontScheme({ name, scheme })}
+          />
         </LocalFontsProvider>
-        <motion.div
-          className="flex-1 pt-4 pl-0 md:pt-0 md:pl-4"
-          initial={false}
-          variants={animatePreview}
-          animate={showPreview ? "shown" : "hidden"}
-        >
-          {fontScheme && <FontSchemePreview scheme={fontScheme.scheme} />}
-        </motion.div>
       </div>
       <Separator orientation="horizontal" className="my-4" />
       {/* Result */}

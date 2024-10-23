@@ -13,55 +13,37 @@ import {
   FormMessage,
   Input,
 } from "@/components/ui";
-import { MOFontScheme } from "@/lib/msoffice/schemes/mo-font-scheme";
 import { t } from "i18next";
 import { Loader2Icon } from "lucide-react";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerRenderProps, SubmitHandler, UseFormReturn } from "react-hook-form";
 import { $FormFontScheme } from "../common";
-import { parseFontSchemeForm, useFontSchemeForm } from "../hooks/use-font-scheme-form";
-import { FontSchemeForm } from "./font-scheme-form";
-import FontSchemePreview from "./font-scheme-preview";
-import { cn } from "@/lib/utils";
+import FontCollectionFields from "./font-collection-fields";
 
-// Preview show/hidden anim
-const animatePreview = {
-  shown: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      ease: "easeOut",
-      duration: 0.2,
-    },
-  },
-  hidden: {
-    opacity: 0,
-    scale: 0.92,
-    transition: {
-      ease: "easeIn",
-      duration: 0.2,
-    },
-  },
-} satisfies Variants;
-
-interface FontSchemeFormSectionProps {
-  onSchemeGenerated(name: string, scheme: MOFontScheme): void;
+function FontSchemeNameInput({ field }: { field: ControllerRenderProps<$FormFontScheme, "fontSchemeName"> }) {
+  return (
+    <FormItem>
+      <FormLabel>{t("craft_font.label_schema_name")}</FormLabel>
+      <FormControl>
+        <Input {...field} />
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  );
 }
 
-export function FontSchemeFormSection({ onSchemeGenerated }: FontSchemeFormSectionProps) {
-  const form = useFontSchemeForm();
+export function FontSchemeForm({
+  form,
+  onSubmit,
+}: {
+  form: UseFormReturn<$FormFontScheme>;
+  onSubmit: SubmitHandler<$FormFontScheme>;
+}) {
   const isSubmitting = form.formState.isSubmitting;
 
-  const handleSubmit = (data: $FormFontScheme) => {
-    // async
-    const { name, scheme } = parseFontSchemeForm(data);
-    onSchemeGenerated(name, scheme);
-    toast.success(t("craft_font.msg_successfully_created"));
-  };
-
   return (
-    <Card className="flex-1 max-w-screen-sm mx-auto">
+    <Card>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardHeader>
             <CardTitle>{t("craft_font.title")}</CardTitle>
           </CardHeader>
