@@ -19,7 +19,9 @@ function LangSelect({ className }: { className?: string }) {
       </SelectTrigger>
       <SelectContent>
         {supportedLngs.map((lng) => (
-          <SelectItem key={lng} value={lng}>{supportedLngNames[lng]}</SelectItem>
+          <SelectItem key={lng} value={lng}>
+            {supportedLngNames[lng]}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>
@@ -28,7 +30,7 @@ function LangSelect({ className }: { className?: string }) {
 
 function ThemeSelect({ className }: { className?: string }) {
   const { setTheme, themes, theme } = useTheme();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Select value={theme} onValueChange={setTheme}>
@@ -64,7 +66,7 @@ export function MainNav({ className, ...restProps }: MainNavProps) {
   return (
     <header
       className={cn(
-        "fixed top-0 inset-x-0 h-16 bg-background/75 backdrop-blur border-b",
+        "fixed top-0 inset-x-0 h-16 bg-background/75 backdrop-blur border-b z-40",
         isTop && "border-transparent",
         className
       )}

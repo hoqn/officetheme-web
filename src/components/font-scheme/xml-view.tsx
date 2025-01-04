@@ -80,7 +80,7 @@ export default function FontSchemeXmlView({ name, xml }: FontSchemeXmlViewProps)
               <Separator orientation="horizontal" className="my-4" />
               <div className="text-sm">
                 <p>{t("craft_font.label_1_post_download")}</p>
-                <Select value={os} onValueChange={setOs as any}>
+                <Select value={os} onValueChange={setOs as (v: string) => void}>
                   <SelectTrigger className="mt-4">
                     <SelectValue placeholder={t("craft_font.placeholder_os")} />
                   </SelectTrigger>
